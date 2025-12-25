@@ -1,0 +1,1 @@
+Prototypal inheritance is that kind of method where we are inheriting the values from the another object
