@@ -18,6 +18,6 @@ let bankSystem = (function () {
         val > 0 ? bankBalance += val : console.log('please enter the positive value')
     }
     return {
-        checkBalance, withdraw, deposit
+         check:checkBalance, draw:withdraw, depo:deposit
     }
 })()
