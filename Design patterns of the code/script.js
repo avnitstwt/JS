@@ -6,14 +6,18 @@ let bankSystem = (function () {
         console.log(bankBalance);
     }
     function withdraw(val) {
-        if (bankBalance <= val) {
-            bankBalance = -val
+        if (bankBalance >= val) {
+            bankBalance -= val
         }
-        function deposit(val) {
-            val > 0 ? bankBalance += val : console.log('please enter the positive value')
+        else{
+            console.log("Please deposit some amount as well, don't just withdraw the amount");
+            
         }
-        return {
-checkBalance,withdraw,deposit
-        }
+    }
+    function deposit(val) {
+        val > 0 ? bankBalance += val : console.log('please enter the positive value')
+    }
+    return {
+        checkBalance, withdraw, deposit
     }
 })()
