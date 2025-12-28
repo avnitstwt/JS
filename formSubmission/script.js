@@ -8,7 +8,7 @@ form.addEventListener('submit', function (evt) {
     fetch('url', {
         method: 'POST',
         body: JSON.stringify({
-         
+            name, email, password
         })
     })
 }
