@@ -1,23 +1,31 @@
-// Design patterns are basically the formats of the code which can easily get understand by any developer
+class YoutubeChannel {
+    constructor() {
+        this.subscribers = []
+    }
+    subscribe(user) {
+        this.subscribers.push(user)
+        user.update(`you have subscribed the channel.`)
+    }
+    unsubscribe(user) {
+        this.subscribers = this.subscribers.filter((sub) => sub !== user)
+        user.update(`you have un-subscribed the channel`)
+    }
+    notify(message) {
+        this.subscribers.forEach((sub) => sub.update(message))
+    }
+}
 
-let bankSystem = (function () {
-    let bankBalance = 12000
-    function checkBalance() {
-        console.log(bankBalance);
+class User {
+    constructor(name) {
+        this.name = name
     }
-    function withdraw(val) {
-        if (bankBalance >= val) {
-            bankBalance -= val
-        }
-        else{
-            console.log("Please deposit some amount as well, don't just withdraw the amount");
-            
-        }
+    update(data) {
+        console.log(`${this.name}, ${data}`);
+
     }
-    function deposit(val) {
-        val > 0 ? bankBalance += val : console.log('please enter the positive value')
-    }
-    return {
-         check:checkBalance, draw:withdraw, depo:deposit
-    }
-})()
+}
+
+let sheriyans = new YoutubeChannel()
+let user1 = new User('harsh')
+
+sheriyans.subscribe(user1)
