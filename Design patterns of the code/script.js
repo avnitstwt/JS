@@ -29,3 +29,7 @@ let sheriyans = new YoutubeChannel()
 let user1 = new User('harsh')
 
 sheriyans.subscribe(user1)
+sheriyans.unsubscribe(user1)
+sheriyans.subscribe(user1)
+
+sheriyans.notify('Lets gooo')
