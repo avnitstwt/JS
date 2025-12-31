@@ -14,6 +14,7 @@ body {
 :root {
     /* backgound colors */
     --bg--primary--color: #070707;
+    --bg--fill-color: #070072;
 
     /* text colors */
     --text-primary-color: #ececec;
@@ -77,13 +78,16 @@ section {
     border: 1px solid var(--border-primary-color);
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill,30px);
-    grid-template-rows: repeat(auto-fill,30px);
+    grid-template-columns: repeat(auto-fill,minmax( 50px,1fr));
+    grid-template-rows: repeat(auto-fill,minmax(50px,1fr));
 }
 
 .block{
-    height: 30px;
-    width: 30px;
+    /* height: 30px;
+    width: 30px; */
     border: 1px solid var(--border-primary-color);
 }
 
+.fill{
+    background-color: var(--bg--fill-color);
+}
