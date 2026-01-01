@@ -5,6 +5,8 @@ const blockWidth = 50
 const cols = Math.floor(board.clientWidth / blockWidth)
 const rows = Math.floor(board.clientHeight / blockHeight)
 
+let timer=null
+
 const blocks = []
 const snake = [
     { x: 1, y: 3 },
@@ -37,7 +39,7 @@ function render() {
     });
 }
 
-setInterval(() => {
+timer = setInterval(() => {
     let head = null
     if (direction === 'left') {
         head = { x: snake[0].x, y: snake[0].y - 1 }
@@ -53,6 +55,10 @@ setInterval(() => {
         head = { x: snake[0].x + 1, y: snake[0].y }
     }
 
+    if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
+        alert("Game Over")
+        clearInterval(timer)
+    }
     snake.forEach(segment => {
         blocks[`${segment.x}-${segment.y}`].classList.remove('fill')
     })
@@ -62,24 +68,24 @@ setInterval(() => {
     render()
 }, 500)
 
-addEventListener('keydown',(event)=>{
+addEventListener('keydown', (event) => {
     console.log(event.key);
-    if (event.key==='ArrowUp'|| event.key==='w') {
+    if (event.key === 'ArrowUp' || event.key === 'w') {
         console.log('working');
-        
-        direction='up'
+
+        direction = 'up'
     }
-    else if(event.key==='ArrowDown'|| event.key==='s'){
-        
-        direction='down'
+    else if (event.key === 'ArrowDown' || event.key === 's') {
+
+        direction = 'down'
     }
-    else if(event.key==='ArrowLeft'|| event.key==='a'){
-        
-        direction='left'
+    else if (event.key === 'ArrowLeft' || event.key === 'a') {
+
+        direction = 'left'
     }
-    else if(event.key==='ArrowRight'|| event.key==='d'){
-        direction='right'
-        
+    else if (event.key === 'ArrowRight' || event.key === 'd') {
+        direction = 'right'
     }
+
 
 })
