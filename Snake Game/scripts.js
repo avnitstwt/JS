@@ -1,10 +1,15 @@
 const board = document.querySelector('.board')
-const blockHeight = 50
-const blockWidth = 50
-
+const startGameModal=   document.querySelector('.start-game')
+const gameOverModal=   document.querySelector('.game-over')
+const startButton = document.querySelector('.btn-start')
+const Modal = document.querySelector('.modal')
 const cols = Math.floor(board.clientWidth / blockWidth)
 const rows = Math.floor(board.clientHeight / blockHeight)
 let timer = null
+const blockWidth = 50
+const blockHeight = 50
+
+
 let food = {
     x: Math.floor(Math.random() * rows), y: Math.floor(Math.random() * cols)
 }
@@ -53,9 +58,12 @@ function render() {
     else if (direction === 'down') {
         head = { x: snake[0].x + 1, y: snake[0].y }
     }
-
+    
     if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
-        alert("Game Over")
+        // alert("Game Over")
+        Modal.style.display='flex'
+startGameModal.style.display='none'
+        gameOverModal.style.display='flex'
         clearInterval(timer)
     }
 
@@ -78,9 +86,20 @@ snake.unshift(head)
     });
 }
 
-timer = setInterval(() => {
-    render()
-}, 500)
+// timer = setInterval(() => {
+//     render()
+// }, 500)
+
+startButton.addEventListener('click',()=>{
+    timer=setInterval(()=>{
+        Modal.style.display='none'
+        render()
+    },300)
+})
+
+function restartGame(){
+
+}
 
 addEventListener('keydown', (event) => {
     console.log(event.key);
