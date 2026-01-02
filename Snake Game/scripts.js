@@ -16,7 +16,7 @@ const timeElement = document.querySelector('.time')
 
 let highScore = localStorage.getItem('highScore') || 50
 let score = 0
-let time = `00-00`||0
+let time = `00-00`
 
 let food = {
     x: Math.floor(Math.random() * rows), y: Math.floor(Math.random() * cols)
@@ -40,7 +40,7 @@ for (let row = 0; row < rows; row++) {
         const block = document.createElement('div')
         block.classList.add('block')
         board.appendChild(block)
-        block.innerText = `${row}-${col}`
+        // block.innerText = `${row}-${col}`
         blocks[`${row}-${col}`] = block
 
     }
@@ -76,6 +76,10 @@ function render() {
         startGameModal.style.display = 'none'
         gameOverModal.style.display = 'flex'
         clearInterval(timer)
+        clearInterval(timerId)
+        return
+
+
     }
 
     if (head.x == food.x && head.y == food.y) {
@@ -87,7 +91,7 @@ function render() {
         snake.unshift(head)
         score += 10
         scoreElement.textContent = score
-        timeElement.textContent=time
+        timeElement.textContent = time
 
         if (score > highScore) {
             highScore = score
@@ -105,6 +109,7 @@ function render() {
     snake.forEach(segment => {
         blocks[`${segment.x}-${segment.y}`].classList.add('fill')
     });
+
 }
 
 
@@ -118,29 +123,35 @@ startButton.addEventListener('click', () => {
     }, 100)
     timerId = setInterval(() => {
         let [min, sec] = time.split('-').map(Number)
-        if (sec==59){
-            min+=1
-            sec=0
+        if (sec == 59) {
+            min += 1
+            sec = 0
         }
-        else{
-            sec+=1
+        else {
+            sec += 1
         }
-        time=`${min}-${sec}`
-        timeElement.textContent=time
-        }, 1000); 
+        time = `${min}-${sec}`
+        timeElement.textContent = time
+    }, 1000);
 })
 
 restartButton.addEventListener('click', restartGame)
 function restartGame() {
+    clearInterval(timer)
+    clearInterval(timerId)
+    
     blocks[`${food.x}-${food.y}`].classList.remove('food')
-
+    
     score = 0
     scoreElement.textContent = score
 
-    time = `00:00`
-    // snake.forEach(segment => {
-    //     blocks[`${segment.x}-${segment.y}`].classList.remove('fill')
-    // })
+   let time = `00:00`
+    snake.forEach(segment => {
+        const block = blocks[`${segment.x}-${segment.y}`]
+        if (block) {
+            block.classList.remove('fill')
+        }
+    })
     direction = 'down'
     Modal.style.display = 'none'
     snake = [{ x: 1, y: 3 }]
