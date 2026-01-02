@@ -13,7 +13,7 @@ const highScoreElement = document.querySelector('.high-score')
 const scoreElement = document.querySelector('.score')
 const timeElement = document.querySelector('.time')
 
-let highScore = 0
+let highScore = localStorage.getItem('highScore')||50
 let score = 0
 let time = 0
 
@@ -49,7 +49,7 @@ for (let row = 0; row < rows; row++) {
 
 function render() {
     let head = null
-
+highScoreElement.textContent=highScore
     blocks[`${food.x}-${food.y}`].classList.add('food')
 
     if (direction === 'left') {
@@ -74,14 +74,6 @@ function render() {
         Modal.style.display = 'flex'
         startGameModal.style.display = 'none'
         gameOverModal.style.display = 'flex'
-        if (highScore < score) {
-            highScore = score
-        }
-
-
-        highScoreElement.textContent = highScore
-        score = 0
-        scoreElement.textContent = score
         clearInterval(timer)
     }
     
@@ -94,19 +86,18 @@ function render() {
         snake.unshift(head)
         score += 10
         scoreElement.textContent = score
-        if (highScore < score) {
-            highScore = score
+        
+        if (score>highScore) {
+            highScore =score
+            localStorage.setItem('highScore',highScore.toString())
         }
-        highScoreElement.textContent = highScore
-
-
-
+        
 
     }
     snake.forEach(segment => {
         blocks[`${segment.x}-${segment.y}`].classList.remove('fill')
     })
-
+    
     snake.unshift(head)
     snake.pop()
     snake.forEach(segment => {
@@ -115,22 +106,27 @@ function render() {
 }
 
 // timer = setInterval(() => {
-//     render()
-// }, 500)
+    //     render()
+    // }, 500)
+    
+    
+    startButton.addEventListener('click', () => {
+        timer = setInterval(() => {
+            console.log('its working');
+            
+            Modal.style.display = 'none'
+            render()
+        }, 100)
+    })
+    
+    restartButton.addEventListener('click', restartGame)
+    function restartGame() {
+        blocks[`${food.x}-${food.y}`].classList.remove('food')
+        
+        score=0
+        scoreElement.textContent = score
 
-
-startButton.addEventListener('click', () => {
-    timer = setInterval(() => {
-        console.log('its working');
-
-        Modal.style.display = 'none'
-        render()
-    }, 100)
-})
-
-restartButton.addEventListener('click', restartGame)
-function restartGame() {
-    blocks[`${food.x}-${food.y}`].classList.remove('food')
+    time=`00:00`
     // snake.forEach(segment => {
     //     blocks[`${segment.x}-${segment.y}`].classList.remove('fill')
     // })
