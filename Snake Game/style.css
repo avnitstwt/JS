@@ -15,6 +15,8 @@ body {
     /* backgound colors */
     --bg--primary--color: #070707;
     --bg--fill-color: #070072;
+    --bg--food-color:#ed0101;
+
 
     /* text colors */
     --text-primary-color: #ececec;
@@ -90,4 +92,27 @@ section {
 
 .fill{
     background-color: var(--bg--fill-color);
+}
+
+.food{
+    background-color: var(--bg--food-color);
+}
+
+.modal{
+height: 100vh;
+width: 100vw;
+position: fixed;
+top: 0;
+background-color: #74747437;
+backdrop-filter: blur(4px);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.modal .start-game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
 }
