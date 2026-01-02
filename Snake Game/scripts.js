@@ -68,20 +68,23 @@ function render() {
     else if (direction === 'down') {
         head = { x: snake[0].x + 1, y: snake[0].y }
     }
-
+    
 
     // Game Over Logic is there
-
+    
     if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
         // alert("Game Over")
         Modal.style.display = 'flex'
         startGameModal.style.display = 'none'
         gameOverModal.style.display = 'flex'
+        time = `00-00`
+        timeElement.textContent = time
+        
         clearInterval(timer)
         clearInterval(timerId)
         return
-
-
+        
+        
     }
 
     if (head.x == food.x && head.y == food.y) {
@@ -145,13 +148,25 @@ restartButton.addEventListener('click', restartGame)
 function restartGame() {
     clearInterval(timer)
     clearInterval(timerId)
-
+    
     blocks[`${food.x}-${food.y}`].classList.remove('food')
-
+    
     score = 0
     scoreElement.textContent = score
-
-    time = `00:00`
+    
+    time = `00-00`
+    timerId = setInterval(() => {
+        let [min, sec] = time.split('-').map(Number)
+        if (sec == 59) {
+            min += 1
+            sec = 0
+        }
+        else {
+            sec += 1
+        }
+        time = `${min}-${sec}`
+        timeElement.textContent = time
+    }, 1000);
     snake.forEach(segment => {
         const block = blocks[`${segment.x}-${segment.y}`]
         if (block) {
