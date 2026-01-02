@@ -49,11 +49,13 @@ for (let row = 0; row < rows; row++) {
 
 
 function render() {
+
     let head = null
     highScoreElement.textContent = highScore
     blocks[`${food.x}-${food.y}`].classList.add('food')
 
     if (direction === 'left') {
+
         head = { x: snake[0].x, y: snake[0].y - 1 }
         // console.log('Helllo');
     }
@@ -109,18 +111,22 @@ function render() {
     snake.forEach(segment => {
         blocks[`${segment.x}-${segment.y}`].classList.add('fill')
     });
+    console.log(head);
 
 }
 
 
 
 startButton.addEventListener('click', () => {
+    clearInterval(timer)
+    clearInterval(timerId)
+     render()   
+     Modal.style.display = 'none'
     timer = setInterval(() => {
         console.log('its working');
 
-        Modal.style.display = 'none'
         render()
-    }, 100)
+    }, 300)
     timerId = setInterval(() => {
         let [min, sec] = time.split('-').map(Number)
         if (sec == 59) {
@@ -139,13 +145,13 @@ restartButton.addEventListener('click', restartGame)
 function restartGame() {
     clearInterval(timer)
     clearInterval(timerId)
-    
+
     blocks[`${food.x}-${food.y}`].classList.remove('food')
-    
+
     score = 0
     scoreElement.textContent = score
 
-   let time = `00:00`
+    time = `00:00`
     snake.forEach(segment => {
         const block = blocks[`${segment.x}-${segment.y}`]
         if (block) {
@@ -158,25 +164,25 @@ function restartGame() {
     food = {
         x: Math.floor(Math.random() * rows), y: Math.floor(Math.random() * cols)
     }
-    timer = setInterval(() => { render() }, 100)
+    timer = setInterval(() => { render() }, 300)
 }
 
 addEventListener('keydown', (event) => {
     console.log(event.key);
-    if (event.key === 'ArrowUp' || event.key === 'w') {
+    if (event.key === 'ArrowUp' || event.key === 'w' && direction !== 'down') {
         console.log('working');
 
         direction = 'up'
     }
-    else if (event.key === 'ArrowDown' || event.key === 's') {
+    else if (event.key === 'ArrowDown' || event.key === 's'&& direction !== 'up') {
 
         direction = 'down'
     }
-    else if (event.key === 'ArrowLeft' || event.key === 'a') {
+    else if (event.key === 'ArrowLeft' || event.key === 'a' && direction !== 'right') {
 
         direction = 'left'
     }
-    else if (event.key === 'ArrowRight' || event.key === 'd') {
+    else if (event.key === 'ArrowRight' || event.key === 'd' && direction !== 'left') {
         direction = 'right'
     }
 
