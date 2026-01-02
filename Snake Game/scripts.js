@@ -68,23 +68,23 @@ function render() {
 
 
     // Game Over Logic is there
-    
+
     if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
         // alert("Game Over")
         Modal.style.display = 'flex'
         startGameModal.style.display = 'none'
         gameOverModal.style.display = 'flex'
-        if(highScore<score){
-            highScore=score
+        if (highScore < score) {
+            highScore = score
         }
-        
 
-        highScoreElement.textContent=highScore
-        score=0
-        scoreElement.textContent=score
+
+        highScoreElement.textContent = highScore
+        score = 0
+        scoreElement.textContent = score
         clearInterval(timer)
     }
-
+    
     if (head.x == food.x && head.y == food.y) {
         blocks[`${food.x}-${food.y}`].classList.remove('food')
         food = {
@@ -92,11 +92,16 @@ function render() {
         }
         blocks[`${food.x}-${food.y}`].classList.add('food')
         snake.unshift(head)
-        score+=10
-        scoreElement.textContent=score
-        
-        
-        
+        score += 10
+        scoreElement.textContent = score
+        if (highScore < score) {
+            highScore = score
+        }
+        highScoreElement.textContent = highScore
+
+
+
+
     }
     snake.forEach(segment => {
         blocks[`${segment.x}-${segment.y}`].classList.remove('fill')
