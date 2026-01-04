@@ -1,50 +1,57 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kanban</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
-        <div class="main">
-
-            <nav class="navv">
-                <h3>Kanban</h3>
-                <button class="add-new btn">Add new Task
-                </button>
-            </nav>
-            <div class="columns">
-                <div class="same">
-                    <div class="head">
-                        To DO
-                    </div>
-                    <div class="content">
-                        <h3>Hello</h3>
-                        <div class="desc">
-                            Helo
-                        </div>
-                    </div>
-                    
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <h3>Kanban</h3>
+            <button class="btn add">
+                Add new Task
+            </button>
+        </nav>
+        <div class="columns">
+            <div class="mains" draggable="false">
+                <div class="head">
+                    <h3>To Do</h3>
+                    <div>Timer</div>
                 </div>
-                <div class="same">
-                    <div class="head">
-                        In Progress
+                <div class="tasks " draggable="true">
+                    <h3>Data</h3>
+                    <div class="content desc">
+                        Hellow world
                     </div>
-                    
-                </div>
-                <div class="same">
-                    <div class="head">
-                        Completed
-                    </div>
-
                 </div>
             </div>
-        </div>
-        <script src="script.js"></script>
+            <div class="mains dragging">
+                <div class="head">
+                    <h3>In process</h3>
+                    <div>Timer</div>
+                </div>
+                <div class="tasks">
 
-    </body>
+                    <h3>Data</h3>
+                    <div class="content desc">
+                    </div>
+                </div>
+            </div>
+            <div class="mains">
+                <div class="head">
+                    <h3>Completed</h3>
+                    <div>Timer</div>
+                </div>
+                <div class="tasks">
+                    <h3>Data</h3>
+                    <div class="content desc">
+                    </div>
+                </div>
+            </div>
+</body>
 
-    </html>
+</html>
