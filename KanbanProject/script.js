@@ -9,12 +9,20 @@ const addTaskButton = document.querySelector('.add-new-task')
 let draggedItem = null
 
 
-addTaskButton.addEventListener('click', () => {
+addTaskButton.addEventListener('click', (e) => {
+       e.preventDefault();
     const taskTitleInput = document.querySelector('.in')
     const textAreaInput = document.querySelector('.de')
     
-    const template = `<div draggable='true' class='task'>
-    <h2>`
+   const div = document.createElement('div')
+
+   div.classList.add('task')
+   div.setAttribute('draggable',true)
+    div.innerHTML=`
+    <h2>${taskTitleInput.value}</h2>
+    <p>${textAreaInput.value}</p>`
+    todo.appendChild(div)
+    modal.classList.remove('hide')
     console.log(taskTitleInput, textAreaInput);
 
 })
