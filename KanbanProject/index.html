@@ -13,7 +13,7 @@
         <nav class="navbar">
             <h3>Kanban</h3>
             <button class="btn add">
-                Add new Task
+                New Task
             </button>
         </nav>
         <div class="columns">
@@ -22,10 +22,14 @@
                     <h3>To Do</h3>
                     <div>Timer</div>
                 </div>
-                <div class="tasks " draggable="true">
-                    <h3>Data</h3>
-                    <div class="content desc">
-                        Hellow world
+                <div class="colum">
+
+                    <div class="tasks " draggable="true">
+                        <h3>Data</h3>
+                        <div class="content desc">
+                            Hellow world
+                        </div>
+                        <button class="delete-btn">Delete</button>
                     </div>
                 </div>
             </div>
@@ -34,22 +38,21 @@
                     <h3>In process</h3>
                     <div>Timer</div>
                 </div>
-                <div class="tasks">
-
-                    <h3>Data</h3>
-                    <div class="content desc">
-                    </div>
-                </div>
             </div>
             <div class="mains COMPLETED">
                 <div class="head">
                     <h3>Completed</h3>
                     <div>Timer</div>
                 </div>
-                <div class="tasks">
-                    <h3>Data</h3>
-                    <div class="content desc">
-                    </div>
+            </div>
+        </div>
+            <div class="modal add-new-task">
+                <div class="bg"></div>
+
+                <div class="center">
+                    <input class="in" type="text" placeholder="Task Title" />
+                    <textarea class="de" ="Task Decription"></textarea>
+                    <button class="add-new-task add-task-btn">Add new</button>
                 </div>
             </div>
             <script src="./script.js"></script>
