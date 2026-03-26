@@ -5,6 +5,7 @@ let pr = new Promise(function(res,req){
             else req('rejected with ' +rn) 
     }, 3000);
 })
+
 pr.then(function(val){
     console.log(val);
 }).catch(function(val){
