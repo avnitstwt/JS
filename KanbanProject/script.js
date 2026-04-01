@@ -8,7 +8,6 @@ const bg = document.querySelector('.bg')
 const addTaskButton = document.querySelector('.add-new-task')
 let draggedItem = null
 
-
 addTaskButton.addEventListener('click', (e) => {
        e.preventDefault();
     const taskTitleInput = document.querySelector('.in')
